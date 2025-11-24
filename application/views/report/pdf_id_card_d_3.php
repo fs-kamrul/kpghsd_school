@@ -36,9 +36,9 @@ foreach ($main_a as $key => $value) {
     $pdf->SetFillColor(5,65,134);
 
     $pdf->Image('images/bg-new.jpg', $bgx, $bgy, $bgz,60);
-    $pdf->Image('images/im_pdf/a40.png', $lx, $ly, $lz);
-    $pdf->Image('images/border.jpg',$bx, $by, $bz,31.4);
-    $pdf->Image('images/qr.jpg',$rx, $ry, $rz,$rz);
+//    $pdf->Image('images/im_pdf/a40.png', $lx, $ly, $lz);
+    $pdf->Image('images/border.jpg',$bx, $by, $bz,30);
+//    $pdf->Image('images/qr.jpg',$rx, $ry, $rz,$rz);
 //    $pdf->Image('images/site.png',$bsx, $bsy, $bsz);
     $picture_file = $value->photo;
 //    if(empty($picture_file)){
@@ -50,15 +50,19 @@ foreach ($main_a as $key => $value) {
 //		$pdf->Cell(190, 5, ' ','LTR', 1, 'C');
         $pdf->SetXY($x, $y);
         $pdf->SetDrawColor(5,65,134);
+//        $pdf->SetDrawColor(0,0,0);
         $pdf->SetTextColor(255,255,255);
     $pdf->SetFont('SairaExtraCondensed', '', 13.5);
+//    $pdf->SetFont('Tangerine_Bold', '', 13);
     $pdf->Cell($hef,3,"",'LBTR',1,'R',1);
+//    $pdf->Cell(10,3,"",1,1,'R',0);
+//        $pdf->SetXY(24,$y+3);
         $pdf->SetX($x);
-    $pdf->MultiCell($hef,$th,$academy_info->s_name,'BLR','C',1);//"Collectorate Public College Nilphamari"
-//    $pdf->Cell($hef,$th,"Collectorate Public College",'LBTR',1,'R',1);
+    $pdf->Cell($hef,$th,"KHANSAMA PILOT GIRLS'",'LBTR',1,'R',1);
+//    $pdf->MultiCell(41.5,$th+1,$academy_info->s_name,'BLR','C',1);//"Collectorate Public College Nilphamari"
         $pdf->SetX($x);
         $pdf->SetFont('Tangerine_Bold', '', 13);
-    $pdf->Cell($hef,$th+2,"Nilphamari     ",'LTR',1,'C',1);
+    $pdf->Cell($hef,$th+2,"       HIGH SCHOOL ",'LTR',1,'C',1);
         $pdf->SetX($x);
         $pdf->SetFillColor(215,40,45);
         $pdf->SetTextColor(255,255,255);
@@ -104,7 +108,7 @@ foreach ($main_a as $key => $value) {
         $pdf->SetDrawColor(5,65,134);
         $pdf->SetTextColor(255,255,255);
     $pdf->SetFont('Arial', 'B', 10.5);
-    $pdf->Cell($hef, $th+1, 'Web: www.cpscn.edu.bd','TLBR',1,'C',1);
+    $pdf->Cell($hef, $th+1, $academy_info->site_url,'TLBR',1,'C',1);
 
     $pdf->Image('images/logod.png', $px, $py, $pz);
 

@@ -50,9 +50,15 @@ if ($erroraaa) {
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="typeahead"><?php echo $this->lang->line('email_address');?></label>
+                        <label class="control-label" for="admin_email_address"><?php echo $this->lang->line('email_address');?></label>
                         <div class="controls">
-                            <input name="admin_email_address" value="<?php echo $main_a->admin_email_address; ?>" type="text" class="span6" id="typeahead"  data-provide="typeahead" data-items="4" required data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                            <input name="admin_email_address" value="<?php echo $main_a->admin_email_address; ?>" type="text" class="span6" id="admin_email_address">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="index_no">Index No</label>
+                        <div class="controls">
+                            <input name="index_no" type="text" value="<?php echo $main_a->index_no; ?>"  class="span6" id="index_no"  data-provide="index_no" data-items="4" >
                         </div>
                     </div>
                     <div class="control-group">
@@ -64,6 +70,28 @@ if ($erroraaa) {
                                 foreach ($option as $v_option) {
                                     $a = $v_option->opt_a;
                                     if ($a == 'profetion') {
+                                        if ($p==$v_option->data_a) {
+                                        ?>
+                                            <option value="<?php echo $v_option->data_a; ?>" selected=""><?php echo $v_option->data_a; ?></option>
+                                        <?php
+                                        }  else { ?>
+                                            <option value="<?php echo $v_option->data_a; ?>"><?php echo $v_option->data_a; ?></option>
+                                        <?php }
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="department">Department</label>
+                        <div class="controls">
+                            <?php $p = $main_a->department; ?>
+                            <select  name="department" id="department" class="">
+                                <?php
+                                foreach ($option as $v_option) {
+                                    $a = $v_option->opt_a;
+                                    if ($a == 'department') {
                                         if ($p==$v_option->data_a) {
                                         ?>
                                             <option value="<?php echo $v_option->data_a; ?>" selected=""><?php echo $v_option->data_a; ?></option>

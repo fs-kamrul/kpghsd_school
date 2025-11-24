@@ -5,7 +5,24 @@ class pdf_model extends CI_Model {
         parent::__construct();
     }
     public function select_stu($data) {
-        $this->db->select('stu_info.id,stu_info.name,stu_info.mobile_number,stu_info.father_name,stu_info.mother_name,stu_info.birth_bate,reg_info.group_r,stu_info.photo,stu_info.division,stu_info.country,stu_info.zip_code,stu_info.village,stu_info.post,stu_info.sub_district,stu_info.district,reg_info.roll,reg_info.reg_id,reg_info.all_reg_id,reg_info.class,reg_info.section,reg_info.year');
+        $this->db->select('stu_info.id,stu_info.name,stu_info.mobile_number,stu_info.blood_group,stu_info.stu_phone,stu_info.father_name,stu_info.mother_name,stu_info.birth_bate,reg_info.group_r,stu_info.photo,stu_info.division,stu_info.country,stu_info.zip_code,stu_info.village,stu_info.post,stu_info.sub_district,stu_info.district,reg_info.roll,reg_info.reg_id,reg_info.all_reg_id,reg_info.class,reg_info.section,reg_info.year');
+        $this->db->from('student_information stu_info');
+        $this->db->join('tbl_all_registration_info reg_info', 'stu_info.reg_id=reg_info.reg_id');
+//        $this->db->join('tbl_testimonial tt_in', 'tt_in.testimonial_all_reg_id=reg_info.all_reg_id', 'left');
+//        $this->db->join('tbl_tc tc', 'tc.tc_all_reg_id=reg_info.all_reg_id','left');
+        $this->db->where('reg_info.year', $data['year']);
+        $this->db->where('reg_info.class', $data['class']);
+        $this->db->where('reg_info.section', $data['section']);
+        $this->db->where('reg_info.group_r', $data['group_r']);
+//        $this->db->where('reg_info.ending_date', '0000-00-00');
+        $this->db->where('reg_info.ending_date', null);
+        $this->db->order_by("reg_info.roll", "ASC");
+        $query_result = $this->db->get();
+        $result = $query_result->result();
+        return $result;
+    }
+    public function select_admin_user($data) {
+        $this->db->select('stu_info.id,stu_info.name,stu_info.mobile_number,stu_info.blood_group,stu_info.father_name,stu_info.mother_name,stu_info.birth_bate,reg_info.group_r,stu_info.photo,stu_info.division,stu_info.country,stu_info.zip_code,stu_info.village,stu_info.post,stu_info.sub_district,stu_info.district,reg_info.roll,reg_info.reg_id,reg_info.all_reg_id,reg_info.class,reg_info.section,reg_info.year');
         $this->db->from('student_information stu_info');
         $this->db->join('tbl_all_registration_info reg_info', 'stu_info.reg_id=reg_info.reg_id');
 //        $this->db->join('tbl_testimonial tt_in', 'tt_in.testimonial_all_reg_id=reg_info.all_reg_id', 'left');
@@ -39,19 +56,11 @@ class pdf_model extends CI_Model {
         $result = $query_result->result();
         return $result;
     }
-    public function select_stu_tc($data) {
-        $this->db->select('tc.*,stu_info.id,stu_info.name,stu_info.mobile_number,stu_info.father_name,stu_info.mother_name,stu_info.birth_bate,reg_info.group_r,stu_info.photo,stu_info.division,stu_info.country,stu_info.zip_code,stu_info.village,stu_info.district,reg_info.roll,reg_info.reg_id,reg_info.all_reg_id,reg_info.class,reg_info.section,reg_info.year');
-        $this->db->from('student_information stu_info');
-        $this->db->join('tbl_all_registration_info reg_info', 'stu_info.reg_id=reg_info.reg_id');
-//        $this->db->join('tbl_testimonial tt_in', 'tt_in.testimonial_all_reg_id=reg_info.all_reg_id', 'left');
-        $this->db->join('tbl_tc tc', 'tc.tc_all_reg_id=reg_info.all_reg_id','left');
-        $this->db->where('reg_info.year', $data['year']);
-        $this->db->where('reg_info.class', $data['class']);
-        $this->db->where('reg_info.section', $data['section']);
-        $this->db->where('reg_info.group_r', $data['group_r']);
-//        $this->db->where('reg_info.ending_date', '0000-00-00');
-        $this->db->where('reg_info.ending_date', null);
-        $this->db->order_by("reg_info.roll", "ASC");
+    public function select_stu_tc() {
+        $this->db->select('*');
+        $this->db->from('tbl_admin');
+//        $this->db->where('reg_info.ending_date', null);
+        $this->db->order_by("admin_name", "ASC");
         $query_result = $this->db->get();
         $result = $query_result->result();
         return $result;

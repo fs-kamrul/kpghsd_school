@@ -269,15 +269,15 @@ if ($message) {
                                                     $pf = "f";
                                                 }
                                                 if ($value2['add_f'] == 2 && $pf == "" && $pfp == "p") {
-                                                    echo '<td>'.$vn.'('.$grade->getNumberGrade($vn).')</td>';//$vn'.'(' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ')
+                                                    echo '<td>'.round($vn, 2).'('.$grade->getNumberGrade($vn).')</td>';//$vn'.'(' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ')
                                                 } elseif ($value2['add_f'] == 1 && $pf == "" && $pfp == "p") {
-                                                    echo '<td>'.$vn.'('.$grade->getNumberGrade($vn).')*</td>';//$vn
+                                                    echo '<td>'.round($vn, 2).'('.$grade->getNumberGrade($vn).')*</td>';//$vn
                                                 } elseif ($value2['add_f'] == 2 && $pf == "f") {
-                                                    echo '<td style="background: red;">'.$vn.'(F)</td>';//$vn
+                                                    echo '<td style="background: red;">'.round($vn, 2).'(F)</td>';//$vn
                                                 } elseif ($value2['add_f'] == 1 && $pf == "f") {
-                                                    echo '<td style="background: red;">'.$vn.'(F)*</td>';//$vn
+                                                    echo '<td style="background: red;">'.round($vn, 2).'(F)*</td>';//$vn
                                                 } elseif ($value2['add_f'] == 3) {
-                                                    echo '<td style="background: yellow;">'.$vn.'('.$grade->getNumberGrade($vn).')#</td>';//$vn
+                                                    echo '<td style="background: yellow;">'.round($vn, 2).'('.$grade->getNumberGrade($vn).')#</td>';//$vn
                                                 }
                                                 $vn = 0;$sum_t = "";
                                                 $pf = $pfp = "";
@@ -291,7 +291,7 @@ if ($message) {
                                 echo '<td>' . $all_process[$value['id']]['cgpa'];
                                 ?><input type="hidden" name="cgpa<?php echo $count_to; ?>" value="<?php echo $all_process[$value['id']]['cgpa']; ?>"><?php
                                 echo '</td>';
-                                echo '<td>' . $vn1;
+                                echo '<td>' . round($vn1, 2);
                                 ?><input type="hidden" name="total_mark<?php echo $count_to; ?>" value="<?php echo $vn1; ?>"><?php
                                 echo '</td>';
                                 echo '<td>' . $all_process[$value['id']]['position'];

@@ -122,7 +122,8 @@ class Super_admin extends CI_Controller {
 
         /* --------file--------------- */
         $config['upload_path'] = 'images/upload/teacher/';
-        $config['file_name'] = $this->input->post('admin_email_address', TRUE);
+//        $config['file_name'] = $this->input->post('admin_email_address', TRUE);
+        $config['file_name'] = rand(1000, 9999) . '-' . date('His');;
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = '1000';
         $config['max_width'] = '1024';
@@ -141,10 +142,12 @@ class Super_admin extends CI_Controller {
         $data['admin_name'] = $this->input->post('admin_name', TRUE);
         $data['admin_email_address'] = $this->input->post('admin_email_address', TRUE);
         $data['profetion'] = $this->input->post('profetion', TRUE);
+        $data['department'] = $this->input->post('department', TRUE);
         $data['admin_action'] = $this->input->post('admin_action', TRUE);
         $data['admin_password'] = md5("123456");
         
         $data['father_name'] = $this->input->post('father_name', TRUE);
+        $data['index_no'] = $this->input->post('index_no', TRUE);
         $data['mother_name'] = $this->input->post('mother_name', TRUE);
 //        $data['birth_bate'] = $this->input->post('birth_bate', TRUE);
 //        $data['join_date'] = $this->input->post('join_date', TRUE);
@@ -206,11 +209,15 @@ class Super_admin extends CI_Controller {
         $photo="";
         /* --------file--------------- */
         $config['upload_path'] = 'images/upload/teacher/';
-        $config['file_name'] = $this->input->post('admin_email_address', TRUE);
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '1000';
+//        $config['file_name'] = $this->input->post('admin_name', TRUE);
+        $config['file_name'] = rand(1000, 9999) . '-' . date('His');;
+//        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif|webp';
+//        $config['allowed_types'] = '*';
+        $config['max_size'] = '1024';
         $config['max_width'] = '1024';
         $config['max_height'] = '1024';
+        $config['encrypt_name']  = TRUE; // optional
         $error = array();
         $fdata = array();
         $this->load->library('upload', $config);
@@ -226,10 +233,14 @@ class Super_admin extends CI_Controller {
         if (!empty($photo)) {
             $data['photo'] = $photo;
         }
+//        echo '<pre>';
+//        print_r($config);
+//        exit();
 //        $reg_id = $this->input->post('reg_id', TRUE);
         $admin_id = $this->input->post('admin_id', TRUE);
         $data['admin_name'] = $this->input->post('admin_name', TRUE);
         $data['father_name'] = $this->input->post('father_name', TRUE);
+        $data['index_no'] = $this->input->post('index_no', TRUE);
         $data['mother_name'] = $this->input->post('mother_name', TRUE);
 //        $data['birth_bate'] = $this->input->post('birth_bate', TRUE);
 //        $data['join_date'] = $this->input->post('join_date', TRUE);
@@ -241,6 +252,7 @@ class Super_admin extends CI_Controller {
         $data['marital_status'] = $this->input->post('marital_status', TRUE);
         $data['blood_group'] = $this->input->post('blood_group', TRUE);
         $data['profetion'] = $this->input->post('profetion', TRUE);
+        $data['department'] = $this->input->post('department', TRUE);
         $data['admin_action'] = $this->input->post('admin_action', TRUE);
         $data['religion'] = $this->input->post('religion', TRUE);
         $data['nationality'] = $this->input->post('nationality', TRUE);

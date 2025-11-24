@@ -47,16 +47,17 @@ foreach ($main_a as $key => $value) {
     $pdf->SetFont('Tangerine_Bold', '', 13.5);
     $pdf->Cell($hef,3,"",'LTR',1,'R');
         $pdf->SetX($x);
-    $pdf->Cell($hef,$th,"Collectorate Public   ",'LR',1,'R');
-        $pdf->SetX($x);
-        $pdf->SetFont('Tangerine_Bold', '', 13);
-    $pdf->Cell($hef,$th+2,"    School & College",'LR',1,'C');
+    $pdf->Cell($hef,$th,"Sonaroy Songolshi  ",'LR',1,'R');
+//        $pdf->SetX($x);
+//        $pdf->SetFont('Tangerine_Bold', '', 13);
+//    $pdf->Cell($hef,$th+2,"    School & College",'LR',1,'C');
         $pdf->SetX($x);
         $pdf->SetFillColor(215,40,45);
         $pdf->SetTextColor(0,0,160);
         $pdf->SetDrawColor(215,40,45);
     $pdf->SetFont('Tangerine_Bold', '', 10);
-    $pdf->Cell($hef, 4, '                 Nilphamari','LR', 1, 'L');
+    $pdf->Cell($hef, 4, '                 College, Nilphamari','LR', 1, 'L');
+    $pdf->Cell($hef, 4, '                 ','LR', 1, 'L');
         $pdf->SetX($x);
     $pdf->Cell($hef,29+8,"",'LR',1,'C');
     $pdf->SetX($x);
@@ -74,14 +75,15 @@ foreach ($main_a as $key => $value) {
     $pdf->Cell($hef,$th-1.5, "           Class: $value->class, Roll: $value->roll",'LR',1,'L');  //.$value->class
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
-    $pdf->Cell($hef,$th-2,"           Section: $value->section, Ses: 2017-18",'LR',1,'L');
+    $pdf->Cell($hef,$th-2,"           Section: $value->section, Ses:  $value->year",'LR',1,'L');
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
     $pdf->Cell($hef,$th-2,"           Group  : $value->group_r",'LR',1,'L');
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
         $pdf->SetTextColor(237,28,36);
-    $pdf->Cell($hef, $th-1.5, "           Validity : 31/06/2020",'LR', 1, 'L');
+    $pdf->Cell($hef, $th-1.5, "           Blood Group : $value->blood_group",'LR', 1, 'L');
+//    $pdf->Cell($hef, $th-1.5, "           Validity : 31/06/2020",'LR', 1, 'L');
 
         $pdf->SetX($x);
         $pdf->SetTextColor(0,0,0);

@@ -29,7 +29,38 @@ class Subject_panel_model extends CI_Model {
         $result = $query_result->result();
         return $result;
     }
+    public function select_sub_class_set($data)
+    {
+        $this->db->select('tbl_subject_info.sub_id, tbl_subject_info.sub_code, tbl_subject_info.sub_name, tbl_subject_info.sub_mark, tbl_subject_info.pass_mark, tbl_sub_exam_date.exam_date, tbl_sub_exam_date.term');
+        $this->db->from('tbl_sub_exam_date');
+        $this->db->join('tbl_subject_info', 'tbl_subject_info.sub_id = tbl_sub_exam_date.subject_id', 'left');
 
+        // Apply filters
+        if (!empty($data['class'])) {
+            $this->db->where('tbl_sub_exam_date.class', $data['class']);
+        }
+        if (!empty($data['section'])) {
+            $this->db->where('tbl_sub_exam_date.section', $data['section']);
+        }
+        if (!empty($data['group_r'])) {
+            $this->db->where('tbl_sub_exam_date.group_r', $data['group_r']);
+        }
+        if (!empty($data['year'])) {
+            $this->db->where('tbl_sub_exam_date.year', $data['year']);
+        }
+        if (!empty($data['term'])) {
+            $this->db->where('tbl_sub_exam_date.term', $data['term']);
+        }
+
+        $this->db->order_by('tbl_sub_exam_date.exam_date', 'ASC');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return [];
+        }
+    }
     public function select_all_sub_s() {
         $this->db->select('*');
         $this->db->from('tbl_subject_info');

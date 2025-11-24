@@ -1,8 +1,9 @@
 <?php
 
 $i=0;
-$pdf = new FPDF();
-$pdf->FPDFA('P','mm','A4');
+$pdf = new FPDF('P', 'mm', 'A4');
+//$pdf = new FPDF();
+//$pdf->FPDFA('P','mm','A4');
 		$h=6; $th=100;$the=180;$sit=190; $signature=192;
 		$t=28;$tk=82; $io=0; $banner=1;$pic=9;
                 $a1=13;$a2=120;$b1=90;$c1=165;
@@ -53,7 +54,7 @@ $pdf->Cell($t, $h, '' . $this->lang->line('session') . ': ', 0, 0, 'r');
 $pdf->Cell(52, $h, $value->year, 0, 1, 'r');
 $pdf->SetFont('Arial','',12);
 $pdf->SetFillColor(200,220,255);
-$pdf->Cell($sit, $h, 'Exam Routine For Session 2017-18, Time: 10 am to 1 p.m', 0, 1, 'C',1);
+$pdf->Cell($sit, $h, 'Exam Routine For Session 2024-25, Time: 10 am to 1 p.m', 0, 1, 'C',1);
 $pdf->SetFont('Arial','',11);
 if ($typ==0) {                // Collage Admit Card
     $ex=38;

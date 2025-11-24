@@ -1,10 +1,11 @@
 <?php
 
 
-$pdf = new FPDF();
-$pdf->FPDFA('L', 'mm', 'A4');
+$pdf = new FPDF('L', 'mm', 'A4');
+//$pdf = new FPDF();
+//$pdf->FPDFA('L', 'mm', 'A4');
 $grade = new Grade();
-$pdf->Open();
+//$pdf->Open();
 //if (isset($main_data)) {
    
 foreach ($main_data as $key => $value) {
@@ -18,7 +19,7 @@ foreach ($main_data as $key => $value) {
     $pdf->Image(base_url() . 'images/im_pdf/grd.PNG', 225, 23, 50);
     $pdf->Image(base_url() . 'images/im_pdf/footer_1.jpg', 10, 192, 270);
     //105.6-6.89
-$pdf->Image('images/im_pdf/a5.jpg',$a1,$a2,30);
+//$pdf->Image('images/im_pdf/a5.jpg',$a1,$a2,30);
 //if($value['photo']!=NULL){
 //    $pdf->Image(base_url() . $value['photo'], 11, 6, 20);
 //}  else {
@@ -35,7 +36,7 @@ $pdf->Image('images/im_pdf/a5.jpg',$a1,$a2,30);
     $pdf->SetFont('Arial', '', 20);
     $pdf->Cell(277, 8, $academy_info->s_name, 0, 1, 'C');
     $pdf->SetFont('Arial', '', 14);
-    $pdf->Cell(277, 8, "Academic Transcript of Half-Yearly Examination " . $year, 0, 1, 'C');
+    $pdf->Cell(277, 8, "Academic Transcript of ".$value['term']." Examination " . $year, 0, 1, 'C');
     $pdf->Ln(5);
     $pdf->SetFont('Arial', '', 13);
     $pdf->Cell(43, $h, 'Name of Student:', 0, 0, 'L');
@@ -99,10 +100,10 @@ $pdf->Image('images/im_pdf/a5.jpg',$a1,$a2,30);
                 $sum1=$value[$value1['sub_name']]['tota_mark'];
 
             $sum2+=$value[$value1['sub_name']]['tota_mark'];
-            $pdf->Cell(39, $th, '( ' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ' )', 1, 0, 'C');
+            $pdf->Cell(39, $th, '( ' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark'], 2) . ' )', 1, 0, 'C');
             if($value1['add_group']==0){
 //                $grou=0;
-                $pdf->Cell(25, $th, $sum1, 1, 0, 'C');
+                $pdf->Cell(25, $th, round($sum1, 2), 1, 0, 'C');
             }elseif($value1['add_group']==1){
 //                if ($value[$value1['sub_name']]['add_fail'] == 1) {
                     $grou+=$sum1;
@@ -113,11 +114,11 @@ $pdf->Image('images/im_pdf/a5.jpg',$a1,$a2,30);
             }elseif($value1['add_group']==2){
                 $grou+=$sum1;
                 $grou2=$grou/2;
-                $pdf->Cell(25, $th-7, substr($grou2,0,5), "FLR", 0, 'C');
+                $pdf->Cell(25, $th-7, substr(round($grou2, 2),0,5), "FLR", 0, 'C');
                 $grou=0;
             }
 
-            $pdf->Cell(28, $th, $sub_info[$value1['sub_name']]['high_mark'], 1, 0, 'C');
+            $pdf->Cell(28, $th, round($sub_info[$value1['sub_name']]['high_mark'], 2), 1, 0, 'C');
 //            $pdf->Cell(25, $th, $grade->getNumberGrade($sum), 1, 0, 'C');
 //            $pdf->Cell(27, $th, $grade->getNumberPoint($sum), 1, 0, 'C');
             if($value1['add_group']==0){

@@ -1,9 +1,10 @@
 <?php
 
 $i=0;
-$pdf = new FPDF();
-$pdf->FPDFA('P','mm','A4');
-$pdf->Open();
+$pdf = new FPDF('P', 'mm', 'A4');
+//$pdf = new FPDF();
+//$pdf->FPDFA('P','mm','A4');
+//$pdf->Open();
 		$h=6; $th=100;$the=180;$sit=190; $signature=192;
 		$t=28;$tk=82; $io=0; $banner=1;$pic=9;
                 $a1=13;$a2=120;$b1=90;$c1=165;
@@ -36,6 +37,14 @@ $picture_file = $value->photo;
         $pdf->Image('images/im_pdf/default.jpg',175,$pic,25);
     }else{
         $pdf->Image($picture_file,175,$pic,25);
+    }
+
+    $picture_file2 = $academy_info->logo;
+    if(!file_exists($picture_file2)){
+        $pdf->Image('images/im_pdf/logo.png',185,41,30);
+    }else{
+        $pdf->Image("$picture_file2",10,5,20);
+        $pdf->Image("$picture_file2",10,140,20);
     }
 //$pdf->Image('testimonial/rot.jpg',12,75,193);
 
@@ -127,17 +136,26 @@ $pdf->Cell($sit, $h, '', 0, 1, 'L');
     $pdf->Cell($ex, $h, 'DATE          |       DAY', 1, 0, 'r');
     $pdf->Cell($ex, $h, 'SUBJECT', 1, 1, 'r');
     $sub_i=$sub_j=0;
-    foreach ($select_subject as $key_sub=>$sub) {
-//            $sub_j++;
-        $check_date = $this->p_model->check_exam_date_set($year,$class,$section,$group_r,$term,$sub->sub_id);
-        if($check_date) {
-            $sub_i++;
-            $pdf->Cell($ex, $h, date("d/m/Y", strtotime($check_date->exam_date)) . '  |  ' . date('l', strtotime($check_date->exam_date)), 1, 0, 'r');
-            if (($sub_i) % 2 != 0) {
-                $pdf->Cell($ex, $h, $sub->sub_name, 1, 0, 'r');
-            } else {
-                $pdf->Cell($ex, $h, $sub->sub_name, 1, 1, 'r');
-            }
+//    foreach ($select_subject as $key_sub=>$sub) {
+////            $sub_j++;
+//        $check_date = $this->p_model->check_exam_date_set($year,$class,$section,$group_r,$term,$sub->sub_id);
+//        if($check_date) {
+//            $sub_i++;
+//            $pdf->Cell($ex, $h, date("d/m/Y", strtotime($check_date->exam_date)) . '  |  ' . date('l', strtotime($check_date->exam_date)), 1, 0, 'r');
+//            if (($sub_i) % 2 != 0) {
+//                $pdf->Cell($ex, $h, $sub->sub_name, 1, 0, 'r');
+//            } else {
+//                $pdf->Cell($ex, $h, $sub->sub_name, 1, 1, 'r');
+//            }
+//        }
+//    }
+    foreach ($select_subject_set as $key_sub=>$sub) {
+        $pdf->Cell($ex, $h, date("d/m/Y", strtotime($sub->exam_date)) . '  |  ' . date('l', strtotime($sub->exam_date)), 1, 0, 'r');
+        $sub_i++;
+        if (($sub_i) % 2 != 0) {
+            $pdf->Cell($ex, $h, $sub->sub_name, 1, 0, 'r');
+        } else {
+            $pdf->Cell($ex, $h, $sub->sub_name, 1, 1, 'r');
         }
     }
     if (($sub_i) % 2 != 0) {

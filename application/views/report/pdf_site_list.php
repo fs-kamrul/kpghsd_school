@@ -7,9 +7,10 @@
 //print_r($action);
 //10,66,122,avarage 56
 
-$pdf = new FPDF();
-$pdf->FPDFA('P', 'mm', 'A4');
-$pdf->Open();
+$pdf = new FPDF('P', 'mm', 'A4');
+//$pdf = new FPDF();
+//$pdf->FPDFA('P', 'mm', 'A4');
+//$pdf->Open();
 $pdf->AddPage();
 $h = 56;$th = 7;$em = 12.5;$def = 190;
 $hef = 67;$y = 10;$x = 4;

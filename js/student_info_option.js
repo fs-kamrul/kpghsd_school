@@ -67,9 +67,27 @@ var gender = {
     "Female": "Female",
     "Other": "Other"
 };
+var disabled_C = {
+    "yes": "Yes",
+    "no": "No",
+};
 function printGender() {
     for (key in gender) {
         document.write('<option value="' + key + '">' + gender[key] + '</option>');
+    }
+}
+function printDisabled() {
+    for (key in disabled_C) {
+        document.write('<option value="' + key + '">' + disabled_C[key] + '</option>');
+    }
+}
+function printDisabledSelect(selected) {
+    for (key in disabled_C) {
+        if (selected.match(key)) {
+            document.write('<option selected="selected" value="' + key + '">' + disabled_C[key] + '</option>');
+        } else {
+            document.write('<option value="' + key + '">' + disabled_C[key] + '</option>');
+        }
     }
 }
 function printGend(staa) {

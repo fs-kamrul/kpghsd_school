@@ -1,9 +1,10 @@
 <?php
 
 $i=0;
-$pdf = new FPDF();
-$pdf->FPDFA('P','mm','A4');
-$pdf->Open();
+$pdf = new FPDF('P', 'mm', 'A4');
+//$pdf = new FPDF();
+//$pdf->FPDFA('P','mm','A4');
+//$pdf->Open();
 		$h=6; $th=100;$the=180;$sit=190; $signature=192;
 		$t=28;$tk=82; $io=0; $banner=1;$pic=9;
                 $a1=13;$a2=120;$b1=90;$c1=165;
@@ -32,6 +33,7 @@ $picture_file = $value->photo;
 		}else{
 			$pdf->Image($picture_file,175,$pic,25);
 		}
+
 //$pdf->Image('testimonial/rot.jpg',12,75,193);
 
 $pdf->SetFont('Tangerine_Bold', '', 16);
@@ -61,7 +63,7 @@ $pdf->Cell($t, $h, '' . $this->lang->line('session') . ': ', 0, 0, 'r');
 $pdf->Cell(52, $h, $value->year, 0, 1, 'r');
 $pdf->SetFont('Arial','',12);
 $pdf->SetFillColor(200,220,255);
-$pdf->Cell($sit, $h, 'Exam Routine For Session 2017-18, Time: 10 am to 1 p.m', 0, 1, 'C',1);
+$pdf->Cell($sit, $h, 'Exam Routine For Session 2024-25, Time: 10 am to 1 p.m', 0, 1, 'C',1);
 $pdf->SetFont('Arial','',11);
 if ($typ==0) {                // Collage Admit Card
     $ex=38;
@@ -164,7 +166,7 @@ $pdf->Ln(14);
         $pdf->SetFont('Helvetica', 'I', 12);
         $pdf->Cell(63.33, 6, 'Exam Committee', 0, 0, 'L');
         $pdf->Cell(63.33, 6, 'Signature Of Class Teacher', 0, 0, 'C');
-        $pdf->Cell(63.33, 6, 'Signature Of Principal', 0, 0, 'R');
+        $pdf->Cell(63.33, 6, 'Signature Of Headmaster', 0, 0, 'R');
 $pdf->Ln(15);
 $banner=149;
 $signature=170;

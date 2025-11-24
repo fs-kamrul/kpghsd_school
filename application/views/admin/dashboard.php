@@ -28,7 +28,11 @@
         <script src="<?php echo base_url(); ?>vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/country.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/student_info_option.js"></script>
-        
+        <?php if (!empty($styles)): ?>
+            <?php foreach ($styles as $css): ?>
+                <link rel="stylesheet" href="<?= $css ?>">
+            <?php endforeach; ?>
+        <?php endif; ?>
     </head>
 
     <body>
@@ -254,7 +258,11 @@
 
 
         <script src="<?php echo base_url(); ?>assets/scripts.js"></script>
-
+        <?php if (!empty($scripts)): ?>
+            <?php foreach ($scripts as $js): ?>
+                <script src="<?= $js ?>"></script>
+            <?php endforeach; ?>
+        <?php endif; ?>
         <script>
 
             function checkDesign(design_name,div_a,div_b){

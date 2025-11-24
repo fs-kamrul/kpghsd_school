@@ -279,15 +279,15 @@ if ($message) {
                                                 $pf = "f";
                                             }
                                             if ($value2['add_f'] == 2 && $pf == "" && $pfp == "p") {
-                                                echo '<td>(' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ')</td>';//$vn
+                                                echo '<td>(' . round($grade->cut_plus_1($value[$value1['sub_name']]['to_mark']), 2) . ')</td>';//$vn
                                             } elseif ($value2['add_f'] == 1 && $pf == "" && $pfp == "p") {
-                                                echo '<td>(' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ')*</td>';//$vn
+                                                echo '<td>(' . round($grade->cut_plus_1($value[$value1['sub_name']]['to_mark']), 2) . ')*</td>';//$vn
                                             } elseif ($value2['add_f'] == 2 && $pf == "f") {
-                                                echo '<td style="background: red;">(' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ')</td>';//$vn
+                                                echo '<td style="background: red;">(' . round($grade->cut_plus_1($value[$value1['sub_name']]['to_mark']), 2) . ')</td>';//$vn
                                             } elseif ($value2['add_f'] == 1 && $pf == "f") {
-                                                echo '<td style="background: red;">' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ')*</td>';//$vn
+                                                echo '<td style="background: red;">' . round($grade->cut_plus_1($value[$value1['sub_name']]['to_mark']), 2) . ')*</td>';//$vn
                                             } elseif ($value2['add_f'] == 3) {
-                                                echo '<td style="background: yellow;">(' . $grade->cut_plus_1($value[$value1['sub_name']]['to_mark']) . ') #</td>';//$vn
+                                                echo '<td style="background: yellow;">(' . round($grade->cut_plus_1($value[$value1['sub_name']]['to_mark']), 2) . ') #</td>';//$vn
                                             }
                                             $vn = 0;
                                             $sum_t = "";
@@ -304,7 +304,7 @@ if ($message) {
                                     ?><input type="hidden" name="cgpa<?php echo $count_to; ?>"
                                              value="<?php echo $all_process[$value['id']]['cgpa']; ?>"><?php
                                     echo '</td>';
-                                    echo '<td>' . $vn1;
+                                    echo '<td>' . round($vn1, 2);
                                     ?><input type="hidden" name="total_mark<?php echo $count_to; ?>"
                                              value="<?php echo $vn1; ?>"><?php
                                     echo '</td>';

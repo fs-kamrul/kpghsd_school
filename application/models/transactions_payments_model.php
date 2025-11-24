@@ -38,4 +38,20 @@ class transactions_payments_model extends CI_Model {
         $this->db->update('transactions_payments', $data);
 //        $this->db->update('transactions_payments');
     }
+    public function select_all_transactions_payments_list($data) {
+        $m_ew = $this->session->userdata('user_id');
+        $this->db->select('*');
+        $this->db->from('transactions_payments tbl');
+        $this->db->where('tbl.class_b', $data['class_b']);
+        $this->db->where('tbl.group_b', $data['group_b']);
+        $this->db->where('tbl.section_b', $data['section_b']);
+        $this->db->where('tbl.year_stu_b', $data['year_stu_b']);
+//        $this->db->like('tbl.entry_date', $data['entry_date']);
+//        $this->db->where('tbl.status', 2);
+        $this->db->order_by('tbl.id', 'ASC');
+//        $this->db->where('tbl.teacher_id', $m_ew);
+        $query_result = $this->db->get();
+        $result = $query_result->result();
+        return $result;
+    }
 }

@@ -36,10 +36,18 @@ class pdf_panel extends CI_Controller {
         $data['title'] = 'id_card_fond';
         $data['show'] = '9';
         $data['input_gallery'] = ' ';
+//        $data['styles'] = [
+//            base_url('assets/pdf/id_card_css.css'),
+//        ];
+        $data['scripts'] = [
+            base_url('assets/pdf/id_card_js.js'),
+        ];
+
         $data['maincontain'] = $this->load->view('report/pdf_input', $data, TRUE);
         $this->load->view('admin/dashboard', $data);
     }
     public function id_card_show() {
+        $user_type = $this->input->post('user_type', TRUE);
         $data = array();
         $data['design'] = $design = $this->input->post('design', TRUE);
         $data['option_set'] = $option_set = $this->input->post('option_set', TRUE);
@@ -51,37 +59,54 @@ class pdf_panel extends CI_Controller {
         $data['title'] = 'id_card_fond';
         $data['show'] = '9';
         $data['input_gallery'] = ' ';
-        $data['main_a'] = $this->p_model->select_stu($data);
+//        $data['main_a'] = $this->p_model->select_stu($data);
         $data['academy_info'] = $academy_info = $this->setting_model->select_info();
 //        echo '<pre>';
+//        print_r($this->input->post());
 //        print_r($data['main_a']);
 //        exit();
 //        $data['maincontain'] = $this->load->view('report/pdf_id_card', $data, TRUE);
-        if($option_set==1){
-            
-            if ($design==1) {
-//                $this->load->view('report/a_test_pdf', $data);
-                $this->load->view('report/pdf_id_card_d_1', $data);
-            }elseif ($design==2) {
-                $this->load->view('report/pdf_id_card_d_2', $data);
-            }  elseif ($design==3) {
-                $this->load->view('report/pdf_id_card_d_3', $data);
-            }  elseif ($design==4) {
-                $this->load->view('report/pdf_id_card_d_4', $data);
-            }  elseif ($design==5) {
-                $this->load->view('report/pdf_id_card_d_5', $data);
-            }  elseif ($design==6) {
-                $this->load->view('report/pdf_id_card_d_6', $data);
-            }  elseif ($design==7) {
-                $this->load->view('report/pdf_id_card_d_7', $data);
-            }  elseif ($design==8) {
-                $this->load->view('report/pdf_id_card_d_8', $data);
+        if ($user_type === 'teacher') {
+            $data['main_a'] = $this->p_model->select_stu_tc();
+            // Show Teacher ID Card PDF
+            if ($option_set == 1) {
+                switch ($design) {
+//                    case 1: $this->load->view('report/pdf/pdf_teacher_design_1', $data); break;
+                    case 2: $this->load->view('report/pdf/pdf_teacher_design_2', $data); break;
+                    case 3: $this->load->view('report/pdf/pdf_teacher_design_3', $data); break;
+                    default: $this->load->view('report/pdf/pdf_teacher_design_1', $data); break;
+                }
+            } else {
+//                echo '<pre>';
+//                print_r($option_set);
+//                exit();
+                switch ($design) {
+//                    case 1: $this->load->view('report/pdf/pdf_teacher_design_1_rfid', $data); break;
+                    case 2: $this->load->view('report/pdf/pdf_teacher_design_2_rfid', $data); break;
+                    default: $this->load->view('report/pdf/pdf_teacher_design_1_rfid', $data); break;
+                }
             }
-        }else{
-            if ($design==7) {
-                $this->load->view('report/pdf_id_card_d_7rfid', $data);
-            }else{
-                $this->load->view('report/pdf_id_card_d_6rfid', $data);
+        } else {
+            // Student
+            $data['main_a'] = $this->p_model->select_stu($data);
+            if ($option_set == 1) {
+                switch ($design) {
+//                    case 1: $this->load->view('report/pdf_id_card_d_1', $data); break;
+                    case 2: $this->load->view('report/pdf_id_card_d_2', $data); break;
+                    case 3: $this->load->view('report/pdf_id_card_d_3', $data); break;
+                    case 4: $this->load->view('report/pdf_id_card_d_4', $data); break;
+                    case 5: $this->load->view('report/pdf_id_card_d_5', $data); break;
+                    case 6: $this->load->view('report/pdf_id_card_d_6', $data); break;
+                    case 7: $this->load->view('report/pdf_id_card_d_7', $data); break;
+                    case 7: $this->load->view('report/pdf_id_card_d_8', $data); break;
+                    default: $this->load->view('report/pdf_id_card_d_1', $data); break;
+                }
+            } else {
+                switch ($design) {
+//                    case 1: $this->load->view('report/pdf_id_card_d_7rfid', $data); break;
+                    case 2: $this->load->view('report/pdf_id_card_d_6rfid', $data); break;
+                    default: $this->load->view('report/pdf_id_card_d_7rfid', $data); break;
+                }
             }
         }
         
@@ -116,13 +141,18 @@ class pdf_panel extends CI_Controller {
     public function id_card_back_border() {
         $data = array();
         $data['option'] = $this->sa_model->select_option();
+        $data['academy_info'] = $academy_info = $this->setting_model->select_info();
         $data['title'] = 'id_card_back';
         $data['show'] = '9';
         $data['input_gallery'] = ' ';
         $data['maincontain'] = $this->load->view('report/pdf_input_2', $data, TRUE);
+        $data['scripts'] = [
+            base_url('assets/pdf/id_card_back_js.js'),
+        ];
         $this->load->view('admin/dashboard', $data);
     }
     public function id_card_back_border_show() {
+        $user_type = $this->input->post('user_type', TRUE);
         $data = array();
         $data['class'] = $this->input->post('class', TRUE);
         $data['section'] = $this->input->post('section', TRUE);
@@ -133,12 +163,45 @@ class pdf_panel extends CI_Controller {
         $data['show'] = '9';
         $data['input_gallery'] = ' ';
         $data['academy_info'] = $academy_info = $this->setting_model->select_info();
-        $data['main_a'] = $this->p_model->select_stu($data);
-//        echo '<pre>';
-//        print_r($data['main_a']);
-//        exit();
-//        $data['maincontain'] = $this->load->view('report/pdf_id_card_back', $data, TRUE);
-        $this->load->view('report/pdf_id_card_bac_1', $data);
+//        $data['main_a'] = $this->p_model->select_stu($data);
+        $data['design'] = $design = $this->input->post('design', TRUE);
+        $data['option_set'] = $option_set = $this->input->post('option_set', TRUE);
+        if ($user_type === 'teacher') {
+            $data['main_a'] = $this->p_model->select_stu_tc();
+            // Show Teacher ID Card PDF
+            if ($option_set == 1) {
+                switch ($design) {
+//                    case 1: $this->load->view('report/pdf/pdf_id_card_back_rfid_1', $data); break;
+//                    case 2: $this->load->view('report/pdf/pdf_teacher_design_2', $data); break;
+//                    case 3: $this->load->view('report/pdf/pdf_teacher_design_3', $data); break;
+                    default: $this->load->view('report/pdf/pdf_id_card_back_rfid_1', $data); break;
+                }
+            } else {
+                switch ($design) {
+//                    case 1: $this->load->view('report/pdf/pdf_id_card_back_rfid_1', $data); break;
+//                    case 2: $this->load->view('report/pdf/pdf_id_card_back_rfid_2', $data); break;
+                    default: $this->load->view('report/pdf/pdf_id_card_back_rfid_1', $data); break;
+                }
+            }
+        } else {
+            // Student
+            $data['main_a'] = $this->p_model->select_stu($data);
+            if ($option_set == 1) {
+                switch ($design) {
+                    case 1: $this->load->view('report/pdf_id_card_bac_1', $data); break;
+//                    case 2: $this->load->view('report/pdf_id_card_bac_2', $data); break;
+                    default: $this->load->view('report/pdf_id_card_bac_1', $data); break;
+                }
+            } else {
+                switch ($design) {
+//                    case 1: $this->load->view('report/pdf_id_card_d_7rfid', $data); break;
+                    case 2: $this->load->view('report/pdf/pdf_id_card_stu_bac_rfid_1', $data); break;
+                    default: $this->load->view('report/pdf/pdf_id_card_stu_bac_rfid_1', $data); break;
+                }
+            }
+        }
+//        $this->load->view('report/pdf/pdf_id_card_rfid_1', $data);
+//        $this->load->view('report/pdf_id_card_bac_1', $data);
     }
     public function site_list() {
         $data = array();
@@ -194,6 +257,9 @@ class pdf_panel extends CI_Controller {
         $this->load->view('report/pdf_result', $data);
     }
     public function result_show() {
+//        error_reporting(E_ALL);
+//        ini_set('display_errors', 1);
+
         $data = array();
         $data['title'] = 'result_show';
         $data['show'] = '9';
@@ -201,6 +267,10 @@ class pdf_panel extends CI_Controller {
         $data['main_data']=array();
         $data['sub_info']=array();
 //        $data['main_data']=array();
+        $data['without_average'] = $this->input->post('without_average', TRUE);
+//            echo '<pre>';
+//            print_r($data);
+//            exit();
         $data['year'] = $this->input->post('year', TRUE);
         $data['class'] = $class = $this->input->post('class', TRUE);
         $data['group_r'] = $this->input->post('group_r', TRUE);
@@ -234,6 +304,7 @@ class pdf_panel extends CI_Controller {
             $data['main_data'][$value->id]['section']=$value->section;
             $data['main_data'][$value->id]['all_reg_id']=$value->all_reg_id;
             $data['main_data'][$value->id]['mobile_number']=$value->mobile_number;
+            $data['main_data'][$value->id]['term']=$value->term;
             $data['main_data'][$value->id]['father_name']=$value->father_name;
             $data['main_data'][$value->id]['mother_name']=$value->mother_name;
             $data['main_data'][$value->id]['photo']=$value->photo;
@@ -253,11 +324,12 @@ class pdf_panel extends CI_Controller {
             $data['sub_info'][$value->sub_name]['sub_mark']=$value->sub_mark;
             $data['sub_info'][$value->sub_name]['add_group']=$value->add_group;
             $data['sub_info'][$value->sub_name]['high_mark']=0;
+            $data['sub_info'][$value->sub_name]['high_mark_g1']=0;
         }
         
         $vn = $vn1 = $pas = 0;
         $pf = $pfp = "";
-        $count_to=1;$sum_t = "";
+        $count_to=1;$sum_t = "";$sum_main_mark = "";$sum_main_mark_sum = 0;
         foreach ($data['main_data'] as $key1 => $value1) {
             foreach ($data['sub_info'] as $key2 => $value2) {
                 if (isset($value1['mark'][$value2['sub_name'] . "_mark"])) {
@@ -265,9 +337,11 @@ class pdf_panel extends CI_Controller {
 
                         $pas=$value3['sub_mark'];
                         $pas1=100/$pas;
-                        $pas2=$pas1*$value3['total'];
+                        $pas2=round(($pas1*$value3['total']), 2);
                         $vn +=$pas2;
                         $sum_t = $pas2.'+'.$sum_t;
+                        $sum_main_mark = $value3['total'].'+'.$sum_main_mark;
+                        $sum_main_mark_sum +=round($value3['total'], 2);
                         $vn1 +=$pas2;
                         if ($value3['mark_pf'] == 'f') {
                             $pf = "f";
@@ -301,15 +375,21 @@ class pdf_panel extends CI_Controller {
 //                    echo $value1['id'];
                     $pf = $pfp = "";
                     $data['main_data'][$value1['id']][$value2['sub_name']]['to_mark']=$sum_t;
+                    $data['main_data'][$value1['id']][$value2['sub_name']]['main_mark']=$sum_main_mark;
+                    $data['main_data'][$value1['id']][$value2['sub_name']]['sum_main_mark_sum']=$sum_main_mark_sum;
                     $data['main_data'][$value1['id']][$value2['sub_name']]['tota_mark']=$vn;
                     $data['main_data'][$value1['id']][$value2['sub_name']]['add_f']=$value3['add_f'];
 //                    $data['sub_info'][$value2['sub_name']]['to_mark']=$sum_t;
                     $sum_t="";
+                    $sum_main_mark="";
                     if ($vn>$data['sub_info'][$value2['sub_name']]['high_mark']) {
                         $data['sub_info'][$value2['sub_name']]['high_mark']=$vn;
+                        $data['sub_info'][$value2['sub_name']]['high_mark_g1']=$sum_main_mark_sum;
                         $vn = 0;
+                        $sum_main_mark_sum = 0;
                     }  else {
                         $vn = 0;
+                        $sum_main_mark_sum = 0;
                     }
                     
                 }else {
@@ -318,7 +398,10 @@ class pdf_panel extends CI_Controller {
                       }
             }$vn1=0;
         }
-        
+
+//            echo '<pre>';
+//            print_r($data['main_data']);
+//            exit();
 //            echo '<pre>';
 //            print_r($data['main_data']);
 //            print_r($data['sub_info']);
@@ -331,17 +414,21 @@ class pdf_panel extends CI_Controller {
 //        print_r($data['sub_info']);
 //        exit();
         }
-        if($term_show){
-            $data['prev_reg'] = $this->p_model->select_prev_stu_result($data);
-            if ($data['prev_reg']) {
-                $data['prev_process'] = $this->prev_process_model->prev_select_result($data);
-                $this->load->view('report/pdf_result_2', $data);
-            }  else {
+
+        if($data['without_average']){
+            $this->load->view('report/pdf_result_4', $data);
+        }else {
+            if ($term_show) {
+                $data['prev_reg'] = $this->p_model->select_prev_stu_result($data);
+                if ($data['prev_reg']) {
+                    $data['prev_process'] = $this->prev_process_model->prev_select_result($data);
+                    $this->load->view('report/pdf_result_2', $data);
+                } else {
+                    $this->load->view('report/pdf_result_3', $data);
+                }
+            } else {
                 $this->load->view('report/pdf_result_3', $data);
             }
-            
-        }  else {
-            $this->load->view('report/pdf_result_3', $data);
         }
         
     }

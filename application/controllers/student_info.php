@@ -86,6 +86,11 @@ class Student_info extends CI_Controller {
         $data['year'] = $datap['year'] = $this->input->post('year', TRUE);
         $data['group_r'] = $datap['group_r'] = $this->input->post('group_r', TRUE);
 
+        $data['birth_registration_number'] = $this->input->post('birth_registration_number', TRUE);
+        $data['previous_school_name'] = $this->input->post('previous_school_name', TRUE);
+        $data['yearly_income'] = $this->input->post('yearly_income', TRUE);
+        $data['disabled_o'] = $this->input->post('disabled_o', TRUE);
+
         $data['father_name'] = $this->input->post('father_name', TRUE);
         $data['job_category'] = $this->input->post('job_category', TRUE);
         $data['mother_name'] = $this->input->post('mother_name', TRUE);
@@ -213,6 +218,12 @@ class Student_info extends CI_Controller {
         $data['mother_name'] = $this->input->post('mother_name', TRUE);
 //        $data['birth_bate'] = $this->input->post('birth_bate', TRUE);
 //        $data['join_date'] = $this->input->post('join_date', TRUE);
+
+        $data['birth_registration_number'] = $this->input->post('birth_registration_number', TRUE);
+        $data['previous_school_name'] = $this->input->post('previous_school_name', TRUE);
+        $data['yearly_income'] = $this->input->post('yearly_income', TRUE);
+        $data['disabled_o'] = $this->input->post('disabled_o', TRUE);
+
         $data['birth_bate'] = date("Y-m-d", strtotime($this->input->post('birth_bate', TRUE)));
         $data['join_date'] = date("Y-m-d", strtotime($this->input->post('join_date', TRUE)));
         $data['id'] = $this->input->post('id', TRUE);

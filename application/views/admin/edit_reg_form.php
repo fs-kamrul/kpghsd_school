@@ -55,6 +55,18 @@ if ($erroraaa) {
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="birth_registration_number"><?php echo $this->lang->line('birth_registration_number');?></label>
+                        <div class="controls">
+                            <input name="birth_registration_number" value="<?php echo $reg_info->birth_registration_number; ?>" type="text" class="span6" id="birth_registration_number">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="previous_school_name"><?php echo $this->lang->line('previous_school_name');?></label>
+                        <div class="controls">
+                            <input name="previous_school_name" value="<?php echo $reg_info->previous_school_name; ?>" type="text" class="span6" id="previous_school_name">
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <div class="navbar navbar-inner block-header" style="border: 1px solid #D4D4D4;">
                             <div class="muted pull-left"><?php echo $this->lang->line('basic_information');?></div>
                         </div>
@@ -63,6 +75,12 @@ if ($erroraaa) {
                         <label class="control-label" for="typeahead"><?php echo $this->lang->line('father_name');?></label>
                         <div class="controls">
                             <input name="father_name" value="<?php echo $reg_info->father_name; ?>" type="text" class="span6" id="typeahead">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="yearly_income"><?php echo $this->lang->line('yearly_income');?></label>
+                        <div class="controls">
+                            <input name="yearly_income" value="<?php echo $reg_info->yearly_income; ?>" type="text" class="span6" id="yearly_income">
                         </div>
                     </div>
                     <div class="control-group">
@@ -113,6 +131,17 @@ if ($erroraaa) {
                                 <option value="">Select....</option>
                                 <script>
                                     printMarital('<?php echo $reg_info->marital_status; ?>');
+                                </script>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="select01"><?php echo $this->lang->line('disabled');?></label>
+                        <div class="controls">
+                            <select name="disabled_o" id="select01">
+                                <option value="">Select....</option>
+                                <script>
+                                    printDisabledSelect('<?php echo $reg_info->disabled_o; ?>');
                                 </script>
                             </select>
                         </div>

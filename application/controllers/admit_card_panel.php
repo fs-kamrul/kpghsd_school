@@ -53,8 +53,9 @@ class admit_card_panel extends CI_Controller{
 //        $data['position_r'] = $this->position_model->position_r($data);
         $data['main_a'] = $this->p_model->select_stu($data);
         $data['select_subject'] = $this->sp_model->select_sub_class($data);
+        $data['select_subject_set'] = $this->sp_model->select_sub_class_set($data);
 //        echo '<pre>';
-//        print_r($data['select_subject']);
+//        print_r($data['select_subject_set']);
 //        exit();
           $data['design'] = $design = $this->input->post('design', TRUE);
         if ($design==1) {

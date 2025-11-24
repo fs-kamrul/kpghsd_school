@@ -223,6 +223,14 @@ function show_subject(obj)
                         </tr>
                         <tr class="">
                             <td></td>
+                            <td>Without Average:</td>
+                            <td>
+                                <input type="checkbox" name="without_average" id="select_all" value="1" class="uniform_on">
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="">
+                            <td></td>
                             <td></td>
                             <td>
                                 <button type="submit" class="btn btn-primary"><?php echo $this->lang->line('search');?></button>

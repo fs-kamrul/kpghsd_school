@@ -53,6 +53,12 @@ if ($erroraaa) {
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="birth_registration_number"><?php echo $this->lang->line('birth_registration_number');?></label>
+                        <div class="controls">
+                            <input name="birth_registration_number" type="text" class="span6" id="birth_registration_number">
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <div class="navbar navbar-inner block-header" style="border: 1px solid #D4D4D4;" >
                             <div class="muted pull-left"><?php echo $this->lang->line('must_be_input');?> ***</div>
                         </div>
@@ -123,9 +129,9 @@ if ($erroraaa) {
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="select01"><?php echo $this->lang->line('group');?></label>
+                        <label class="control-label" for="group"><?php echo $this->lang->line('group');?></label>
                         <div class="controls">
-                            <select  name="group_r" id="select01" class="">
+                            <select  name="group_r" id="group" class="">
                                 <?php
                                 foreach ($option as $v_option) {
                                     $a = $v_option->opt_a;
@@ -140,27 +146,39 @@ if ($erroraaa) {
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="previous_school_name"><?php echo $this->lang->line('previous_school_name');?></label>
+                        <div class="controls">
+                            <input name="previous_school_name" type="text" class="span6" id="previous_school_name">
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <div class="navbar navbar-inner block-header" style="border: 1px solid #D4D4D4;">
                             <div class="muted pull-left"><?php echo $this->lang->line('basic_information');?></div>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="typeahead"><?php echo $this->lang->line('father_name');?></label>
+                        <label class="control-label" for="father_name"><?php echo $this->lang->line('father_name');?></label>
                         <div class="controls">
-                            <input name="father_name" type="text" class="span6" id="typeahead">
+                            <input name="father_name" type="text" class="span6" id="father_name">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="typeahead"><?php echo $this->lang->line('job_category');?></label>
+                        <label class="control-label" for="job_category"><?php echo $this->lang->line('job_name');?></label>
                         <div class="controls">
-                            <input name="job_category" type="text" class="span6" id="typeahead">
+                            <input name="job_category" type="text" class="span6" id="job_category">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="yearly_income"><?php echo $this->lang->line('yearly_income');?></label>
+                        <div class="controls">
+                            <input name="yearly_income" type="text" class="span6" id="yearly_income">
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" for="typeahead"><?php echo $this->lang->line('mother_name');?></label>
+                        <label class="control-label" for="mother_name"><?php echo $this->lang->line('mother_name');?></label>
                         <div class="controls">
-                            <input name="mother_name" type="text" class="span6" id="typeahead">
+                            <input name="mother_name" type="text" class="span6" id="mother_name">
                         </div>
                     </div>
                     <div class="control-group">
@@ -170,9 +188,9 @@ if ($erroraaa) {
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="date01"><?php echo $this->lang->line('join_date');?></label>
+                        <label class="control-label" for="date01"><?php echo $this->lang->line('admission_date');?></label>
                         <div class="controls">
-                            <input name="join_date" type="" class="input-xlarge datepicker" id="date01" value="<?php echo date("m/d/Y") ?>">
+                            <input name="join_date" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo date("m/d/Y") ?>">
                         </div>
                     </div>
                     <div class="control-group">
@@ -192,6 +210,16 @@ if ($erroraaa) {
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="disabled_o"><?php echo $this->lang->line('disabled');?></label>
+                        <div class="controls">
+                            <select  name="disabled_o" id="disabled_o" class="chzn-select">
+                                <script type="text/javascript">
+                                    printDisabled();
+                                </script>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="select01"><?php echo $this->lang->line('marital_status');?></label>
                         <div class="controls">
                             <select name="marital_status" id="select01" class="chzn-select">
@@ -205,7 +233,7 @@ if ($erroraaa) {
                         <label class="control-label" for="select01"><?php echo $this->lang->line('blood_group');?></label>
                         <div class="controls">
                             <select name="blood_group" id="select01" class="chzn-select">
-                                <option>Select <?php echo $this->lang->line('blood_group');?></option>
+                                <option value="">Select <?php echo $this->lang->line('blood_group');?></option>
                                 <script type="text/javascript">
                                     printBloodGroupOption();
                                 </script>

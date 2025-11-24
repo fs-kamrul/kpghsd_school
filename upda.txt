@@ -9,3 +9,11 @@ span6
 
 //tcpdf
 php tools/tcpdf_addfont.php -i fonts/siyamrupali.ttf -f TrueTypeUnicode
+
+
+ALTER TABLE `student_information` ADD `birth_registration_number` VARCHAR(255) NULL DEFAULT NULL AFTER `photo`, ADD `disabled_o` VARCHAR(255) NULL DEFAULT NULL AFTER `birth_registration_number`, ADD `yearly_income` VARCHAR(255) NULL DEFAULT NULL AFTER `disabled_o`, ADD `previous_school_name` VARCHAR(255) NULL DEFAULT NULL AFTER `yearly_income`;
+
+birth_registration_number
+disabled_o
+yearly_income
+previous_school_name

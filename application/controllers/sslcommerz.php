@@ -10,10 +10,10 @@ class Sslcommerz extends CI_Controller {
         $this->load->model('transactions_payments_model', 'payments_model', TRUE);
         $this->load->model('transactions_ssl_model', 'ssl_model', TRUE);
         $this->load->model('baton_model', 'b_model', TRUE);
-//        $store_id = 'appda686e5ea255235';
-//        $store_passwd = 'appda686e5ea255235@ssl';
-        $store_id = 'ssdcniledubdlive';
-        $store_passwd = '68749D8CEEE2515917';
+        $store_id = 'appda686e5ea255235';
+        $store_passwd = 'appda686e5ea255235@ssl';
+//        $store_id = 'ssdcniledubdlive';
+//        $store_passwd = '68749D8CEEE2515917';
 //        $this->angular_base_url = 'http://localhost:4200';
         $this->angular_base_url = 'https://studentportal.ssdcnil.edu.bd';
 //        $this->ssl_url = 'https://sandbox.sslcommerz.com';
@@ -85,6 +85,105 @@ class Sslcommerz extends CI_Controller {
         $this->payments_model->update_id_payments($data_p, $tuitionfees->id);
 
         redirect("{$this->angular_base_url}/payment/cancel?tran_id={$tran_id}&status=canceled");
+    }
+    public function success_ssl_ipn($tran_id)
+    {
+//        echo '<pre>';
+//        $tran_id = $this->input->post('tran_id');
+//        print_r($tran_id);
+//        echo '<br/>';
+
+        $tuitionfees = $this->payments_model->check_customer_order_id($tran_id);
+//        print_r($tuitionfees);
+//        echo 'tuitionfees<br/>';
+        $data = array();
+        $data_p = array();
+        $data_s = array();
+        $data_save = 0;
+
+        if($tuitionfees and $tuitionfees->status == 0 ) {
+            $ssl_val_id = $this->sslValidate_recheck($tuitionfees->customer_order_id);
+//            echo '<pre>';
+//            print_r($ssl_val_id);
+//            echo '<br/>';
+//            exit();
+
+            if (
+                isset($ssl_val_id['element'][0]['status']) &&
+                in_array($ssl_val_id['element'][0]['status'], ['VALIDATED', 'VALID'])
+            )  {
+
+                $checkSslcommerz = $this->ssl_model->check_customer_tran_id($tran_id);
+//                print_r($checkSslcommerz);
+//                echo 'checkSslcommerz<br/>';
+                if(!$checkSslcommerz) {
+                    $data_s['user_id'] = $ssl_val_id['element'][0]['value_b'];
+                    $data_s['status'] = $ssl_val_id['element'][0]['status'];
+                    $data_s['tran_date'] = $ssl_val_id['element'][0]['tran_date'];
+                    $data_s['tran_id'] = $ssl_val_id['element'][0]['tran_id'];
+                    $data_s['val_id'] = $ssl_val_id['element'][0]['val_id'];
+                    $data_s['store_amount'] = $ssl_val_id['element'][0]['store_amount'];
+                    $data_s['currency'] = $ssl_val_id['element'][0]['currency'];
+                    $data_s['bank_tran_id'] = $ssl_val_id['element'][0]['bank_tran_id'];
+                    $data_s['card_type'] = $ssl_val_id['element'][0]['card_type'];
+                    $data_s['card_no'] = $ssl_val_id['element'][0]['card_no'];
+                    $data_s['card_issuer'] = $ssl_val_id['element'][0]['card_issuer'];
+                    $data_s['card_brand'] = $ssl_val_id['element'][0]['card_brand'];
+                    $data_s['card_issuer_country'] = $ssl_val_id['element'][0]['card_issuer_country'];
+                    $data_s['card_issuer_country_code'] = $ssl_val_id['element'][0]['card_issuer_country_code'];
+                    $data_s['currency_type'] = $ssl_val_id['element'][0]['currency_type'];
+                    $data_s['currency_amount'] = $ssl_val_id['element'][0]['currency_amount'];
+                    $data_s['currency_rate'] = $ssl_val_id['element'][0]['currency_rate'];
+                    $data_s['base_fair'] = $ssl_val_id['element'][0]['base_fair'];
+                    $data_s['emi_instalment'] = $ssl_val_id['element'][0]['emi_instalment'];
+                    $data_s['emi_amount'] = $ssl_val_id['element'][0]['emi_amount'];
+                    $data_s['emi_description'] = $ssl_val_id['element'][0]['emi_description'];
+                    $data_s['emi_issuer'] = $ssl_val_id['element'][0]['emi_issuer'];
+                    $data_s['risk_title'] = $ssl_val_id['element'][0]['risk_title'];
+                    $data_s['risk_level'] = $ssl_val_id['element'][0]['risk_level'];
+                    $data_s['discount_percentage'] = $ssl_val_id['element'][0]['discount_percentage'];
+                    $data_s['discount_remarks'] = $ssl_val_id['element'][0]['discount_remarks'];
+                    $data_s['validated_on'] = $ssl_val_id['element'][0]['validated_on'];
+                    $data_s['reff_id'] = $ssl_val_id['element'][0]['value_a'];
+
+                    $data_save = $this->ssl_model->save_all_ssl_data($data_s);
+                }
+                // update payment invoice
+                $this->payments_student_due($tran_id);
+
+//                print_r($data_save);
+//                echo 'data_save<br/>';
+                //update payment 1stTable
+                $data_p['order_id'] =  $ssl_val_id['element'][0]['val_id'];
+                $data_p['val_id'] =  $ssl_val_id['element'][0]['val_id'];
+                $data_p['status'] =  1;
+                $data_p['sp_message'] =  'Success';
+                $data_p['updated_at'] =  date('Y-m-d H:i:s');
+                $data_p['transactions_id'] =  $data_save;
+                $this->payments_model->update_id_payments($data_p, $tuitionfees->id);
+                redirect("{$this->angular_base_url}/payment/success?tran_id={$tran_id}&status=success");
+            }else{
+                $data_p['order_id'] =  0;
+                $data_p['val_id'] =  0;
+                $data_p['status'] =  2;
+                $data_p['updated_at'] =  date('Y-m-d H:i:s');
+                $data_p['sp_message'] =  'Failed';
+                $data_p['transactions_id'] =  0;
+                $this->payments_model->update_id_payments($data_p, $tuitionfees->id);
+                $data['message']= "ssl validation fail";
+                redirect("{$this->angular_base_url}/payment/fail?tran_id={$tran_id}&status=failed");
+            }
+        }else{
+            $data['message']= "not found";
+            redirect("{$this->angular_base_url}/payment/fail?tran_id={$tran_id}&status=not-found");
+        }
+//        print_r($data);
+//        return $data;
+//        echo '<pre>';
+//        print_r('ok');
+//        echo '</pre>';
+//        exit();
+//        redirect("{$this->angular_base_url}/payment/success?tran_id=$tran_id");
     }
     public function success_redirect()
     {
@@ -187,10 +286,10 @@ class Sslcommerz extends CI_Controller {
     }
     public function sslValidate_recheck($tran_id)
     {
-        $store_id = 'ssdcniledubdlive';
-        $store_passwd = '68749D8CEEE2515917';
-//        $store_id = 'appda686e5ea255235';
-//        $store_passwd = 'appda686e5ea255235@ssl';
+//        $store_id = 'ssdcniledubdlive';
+//        $store_passwd = '68749D8CEEE2515917';
+        $store_id = 'appda686e5ea255235';
+        $store_passwd = 'appda686e5ea255235@ssl';
         $url = "{$this->ssl_url}/validator/api/merchantTransIDvalidationAPI.php";
 //        $url = '{$this->ssl_url}/validator/api/validationserverAPI.php?wsdl';
 

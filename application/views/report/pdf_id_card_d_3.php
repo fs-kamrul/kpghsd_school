@@ -54,7 +54,8 @@ foreach ($main_a as $key => $value) {
     $pdf->SetFont('SairaExtraCondensed', '', 13.5);
     $pdf->Cell($hef,3,"",'LBTR',1,'R',1);
         $pdf->SetX($x);
-    $pdf->Cell($hef,$th,"Collectorate Public College",'LBTR',1,'R',1);
+    $pdf->MultiCell($hef,$th,$academy_info->s_name,'BLR','C',1);//"Collectorate Public College Nilphamari"
+//    $pdf->Cell($hef,$th,"Collectorate Public College",'LBTR',1,'R',1);
         $pdf->SetX($x);
         $pdf->SetFont('Tangerine_Bold', '', 13);
     $pdf->Cell($hef,$th+2,"Nilphamari     ",'LTR',1,'C',1);

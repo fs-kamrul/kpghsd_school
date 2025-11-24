@@ -1,0 +1,25 @@
+<?php
+$lang = array(
+    'type_your_message' => 'আপনার বার্তা টাইপ করুন',
+    'payment_invoice' => 'পেমেন্ট চালান',
+    'baton' => 'বিল',
+    'baton_input' => 'বিল ইনপুট',
+    'baton_assign' => 'বিল বরাদ্দ',
+    'baton_report' => 'বিল প্রতিবেদন',
+    'top_sheet' => 'শীর্ষ শীট',
+    'baton_package' => 'বিল প্যাকেজ',
+    'view_set_package' => 'প্যাকেজ সেট দেখুন',
+    'baton_package_name' => 'বিল প্যাকেজের নাম',
+    'tuition_fee' => 'শিক্ষাদান ফি',
+    'tiffin_fee' => 'টিফিন ফি',
+    'fine' => 'জরিমানা',
+    'admission_fee' => 'ভর্তি ফি',
+    'development_fee' => 'উন্নয়ন ফি',
+    'session_fee' => 'সেশন ফি',
+    'lab_fee' => 'গবেষণাগার ফি',
+    'others_fee' => 'অন্যান্ ফি',
+    'save_package' => 'প্যাকেজ সংরক্ষণ করুন',
+    'package_name' => 'প্যাকেজের নাম',
+    'save_set_package' => 'সেট প্যাকেজ সংরক্ষণ করুন',
+    'a' => 'A'
+);

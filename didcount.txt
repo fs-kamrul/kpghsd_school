@@ -1,0 +1,13 @@
+SELECT * FROM `tbl_baton_invoice` WHERE `student_id` LIKE '2111112' AND `tbl_baton_invoice`.`discount_present` != '100'
+
+UPDATE `tbl_baton_invoice` SET `tution_fee` = '0' WHERE `student_id` LIKE '2111112' AND `tbl_baton_invoice`.`discount_present` != '100'
+
+UPDATE `tbl_baton_invoice` SET `total_amnt` = '0' WHERE `student_id` LIKE '2111112' AND `tbl_baton_invoice`.`discount_present` != '100'
+
+UPDATE `tbl_baton_invoice` SET `previous_due` = '0' WHERE `student_id` LIKE '2111112' AND `tbl_baton_invoice`.`discount_present` != '100'
+
+UPDATE `tbl_baton_invoice` SET `g_total` = '0' WHERE `student_id` LIKE '2111112' AND `tbl_baton_invoice`.`discount_present` != '100'
+
+UPDATE `tbl_baton_invoice` SET `total_due` = '0' WHERE `student_id` LIKE '2111112' AND `tbl_baton_invoice`.`discount_present` != '100'
+
+UPDATE `tbl_baton_invoice` SET `discount_present` = '100' WHERE `student_id` LIKE '2111112' AND `tbl_baton_invoice`.`discount_present` != '100'

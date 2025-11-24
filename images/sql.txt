@@ -1,0 +1,39 @@
+
+INSERT INTO `tbl_url` (`url_id`, `url_name`, `url_title`, `url_icon`, `url_type`, `url_active`, `status`, `order_by`) VALUES (NULL, 'invoice_panel/top_sheet.html', 'Top Sheet', 'fa fa-refresh fa-spin fa-4x fa-fw', 'invoice', '21', '1', '78');
+INSERT INTO `tbl_url_authentication` (`url_group_name`, `url_id`, `url_insert`, `url_edit`, `url_delete`, `url_authentication_id`) VALUES ('super_admin', '78', '1', '1', '1', NULL);
+
+INSERT INTO `tbl_url` (`url_id`, `url_name`, `url_title`, `url_icon`, `url_type`, `url_active`, `status`, `order_by`) VALUES (NULL, 'profile_panel/change_password.html', 'Change Password', 'fa fa fa-key fa-4x', 'profile', '17', '1', '82');
+
+
+INSERT INTO `tbl_url` (`url_id`, `url_name`, `url_title`, `url_icon`, `url_type`, `url_active`, `status`, `order_by`) VALUES (NULL, 'invoice_panel/previous_due.html', 'Previous Due Entry', 'fa fa-hourglass-half fa-4x fa-fw', 'invoice', '21', '1', '83');
+INSERT INTO `tbl_url_authentication` (`url_group_name`, `url_id`, `url_insert`, `url_edit`, `url_delete`, 
+`url_authentication_id`) VALUES ('super_admin', '83', '1', '1', '1', NULL);
+
+ALTER TABLE `tbl_baton_invoice` ADD `previous_due` DOUBLE(25,2) NOT NULL DEFAULT '0' AFTER `others_fee`;
+
+
+ALTER TABLE `tbl_school` ADD `email` VARCHAR(200) NOT NULL AFTER `s_code`, ADD `phone_number` VARCHAR(30) NOT NULL AFTER `email`, ADD `site_url` VARCHAR(200) NOT NULL AFTER `phone_number`;
+
+
+$db['default']['username'] = 'cpscnbd_result';
+$db['default']['password'] = 'nilsagor';
+$db['default']['database'] = 'cpscnbd_school_management';
+
+
+CREATE TABLE transactions_payments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  reg_id INT NOT NULL,
+  student_id VARCHAR(50) NOT NULL,
+  order_id VARCHAR(50) NULL,
+  customer_order_id VARCHAR(50) NULL,
+  due DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  fine DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  discount DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  service_charge DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  total_pay DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  pay_amount DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  sp_message VARCHAR(50) NULL,
+  transactions_id INT NULL,
+  status INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

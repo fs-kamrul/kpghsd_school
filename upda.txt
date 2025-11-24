@@ -1,0 +1,11 @@
+max_input_vars=100000
+
+job_category stu_info
+
+
+chzn-select
+span6
+
+
+//tcpdf
+php tools/tcpdf_addfont.php -i fonts/siyamrupali.ttf -f TrueTypeUnicode

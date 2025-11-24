@@ -98,7 +98,8 @@ foreach ($main_a as $key => $value) {
         $pdf->SetX($x);
         $pdf->SetTextColor(0,0,0);
     $pdf->SetFont('Arial', 'B', 5);
-    $pdf->Cell($hef, 2, 'Signature of the Principal','LR',1,'R');
+//    $pdf->Cell($hef, 2, 'Signature of the Principal','LR',1,'R');
+    $pdf->Cell($hef, 2, '','LR',1,'R');
         $pdf->SetX($x);
         $pdf->SetDrawColor(215,40,45);
     $pdf->SetFont('Arial', 'B', 9);

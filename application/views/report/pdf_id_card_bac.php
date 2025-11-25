@@ -21,7 +21,7 @@ foreach ($main_a as $key => $value) {
     if($j==10){
         $pdf->AddPage();
         $j=1;$y = 3;$x = 144.5;
-        $sx=153;$sy=18;//$sz=28;
+        $sx=146;$sy=7;//$sz=28;
     }
     $pdf->SetFillColor(32,118,196);
 //    $pdf->Image('pictures/students/Roll-04.jpg', $sx, $sy, $sz);

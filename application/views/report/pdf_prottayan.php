@@ -31,8 +31,8 @@ $pdf->Image('images/im_pdf/dot2.png',170,119,33);
 //$pdf->Image('testimonial/dot2.png',240,141,26);
 
 $pdf->Image('images/im_pdf/logo.png',185,41,30);
-$pdf->Image('images/im_pdf/signature1.jpg',210,155,65);
-$pdf->Image('images/im_pdf/signature1.jpg',20,175,70);
+$pdf->Image('images/pdf/signature.png',210,155,65);
+$pdf->Image('images/pdf/signature.png',20,175,70);
 $pdf->SetFont('Arial', '', 12);
 $pdf->Cell($th, 8, '', 0, 0, 'C');
 $pdf->SetFont('Arial', '', 18);

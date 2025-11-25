@@ -9,7 +9,7 @@ $pdf = new FPDF('L', 'mm', 'A4');
 foreach ($main_a as $key => $value) {
 $pdf->AddPage();
 $pdf->Image('images/im_pdf/school_logo1.jpg',110,10,180);
-$pdf->Image('images/im_pdf/a.jpg',150,80,100);
+$pdf->Image('images/pdf/a.jpg',150,80,100);
 $pdf->Image('images/im_pdf/dot.png',170,77,110);
 $pdf->Image('images/im_pdf/dot.png',155,84,125);
 $pdf->Image('images/im_pdf/dot.png',154,91,126);
@@ -30,7 +30,7 @@ $pdf->Image('images/im_pdf/dot2.png',170,119,33);
 //$pdf->Image('testimonial/dot2.png',165,126,35);
 //$pdf->Image('testimonial/dot2.png',240,141,26);
 
-$pdf->Image('images/im_pdf/logo.png',185,41,30);
+$pdf->Image('images/pdf/logo.png',185,41,30);
 $pdf->Image('images/pdf/signature.png',210,155,65);
 $pdf->Image('images/pdf/signature.png',20,175,70);
 $pdf->SetFont('Arial', '', 12);
@@ -107,7 +107,7 @@ $pdf->Cell($tk, $h, $value->group_r, 0, 0, 'r');//$row[reg_in]
 $pdf->Cell(20, $h, 'session', 0, 0, 'r');
 $pdf->Cell(25, $h, $value->year, 0, 0, 'C');
 $pdf->Cell(5, $h, 'in', 0, 0, 'r');
-$pdf->Cell(33, $h, $value->group_r, 0, 0, 'C');
+$pdf->Cell(38, $h, $value->group_r, 0, 0, 'C');
 $pdf->Cell(53, $h, 'group in this institution.', 0, 0, 'r');
 $pdf->Cell(30, $h, '', 0, 1, 'r');
 

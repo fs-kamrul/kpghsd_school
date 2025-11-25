@@ -10,6 +10,7 @@ $pdf->AddPage();
 $h = 56;$th = 5;$em = 16;$def = 190;$hef = 52;
 $y = 3;$x = 144.5;$i = 0;$j = 0;$k=0;
 $sx=146;$sy=7;$sz=48;
+$bcx=145;$bcy=25;$bcz=51;
 $lineHeight = 3.5;
 $pdf->SetFont('Arial', 'I', 11);
 
@@ -22,6 +23,7 @@ foreach ($main_a as $key => $value) {
         $pdf->AddPage();
         $j=1;$y = 3;$x = 144.5;
         $sx=146;$sy=7;//$sz=28;
+        $bcx=145;$bcy=25;
     }
     $pdf->SetFillColor(32,118,196);
 //    $pdf->Image('pictures/students/Roll-04.jpg', $sx, $sy, $sz);
@@ -34,6 +36,7 @@ foreach ($main_a as $key => $value) {
     if(file_exists('images/pdf/pdf_header2.png')){
         $pdf->Image('images/pdf/pdf_header2.png', $sx, $sy, $sz);
     }
+    $pdf->Image('images/pdf/backCondition.png', $bcx, $bcy, $bcz );
     $pdf->SetFont('Arial', 'B', 7);
         $pdf->SetXY($x, $y);
     $pdf->Cell($hef, $th, ' ','LTR', 1, 'C');
@@ -70,13 +73,16 @@ foreach ($main_a as $key => $value) {
     if ($k==1) {
         $x = $x-65.5;//143;//$x+65;
         $sx=$sx-65;
+        $bcx=$bcx-65;
     }elseif ($k==2) {
         $x = $x-65.5;
         $sx=$sx-65;
+        $bcx=$bcx-65;
     }elseif($k==3){
         $k=0;
         $y=$y+92;$x = 144.5;
         $sy+=92;$sx=146;
+        $bcy+=92;$bcx=145;
     }
 }
 $pdf->Output();

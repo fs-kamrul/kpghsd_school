@@ -54,6 +54,38 @@ class other_libraries {
         }
         return $session;
     }
+    public function GetClassData($class) {
+        switch (strtoupper($class)) {
+            case 'NINE':
+                $start = $this->getClassRoman('Nine');
+                $end   = $this->getClassRoman('Ten');
+                break;
+            case 'NINE-VOC':
+                $start = $this->getClassRoman('Nine');
+                $end   = $this->getClassRoman('Ten');
+                break;
+            case 'TEN':
+                $start = $this->getClassRoman('Nine');
+                $end   = $this->getClassRoman('Ten');
+                break;
+            case 'TEN-VOC':
+                $start = $this->getClassRoman('Nine');
+                $end   = $this->getClassRoman('Ten');
+                break;
+            case 'ELEVEN':
+                $start = $this->getClassRoman('Eleven');
+                $end   = $this->getClassRoman('Twelve');
+                break;
+            case 'TWELVE':
+                $start = $this->getClassRoman('Eleven');
+                $end   = $this->getClassRoman('Twelve');
+                break;
+            default:
+                return $this->getClassRoman($class);
+        }
+        return $start . ' - ' . $end;
+    }
+
 
     /* in_words */
     function get_bd_money_format($amount) {

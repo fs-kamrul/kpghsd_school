@@ -84,10 +84,10 @@ foreach ($main_a as $key => $value) {
         $pdf->SetTextColor(0,0,0);
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
-    $pdf->Cell($hef,$th-1, ' Class: XI-XII','LR',1,'L');  //.$value->class
+    $pdf->Cell($hef,$th-1, ' Class: ' . $other_libraries->GetClassData($value->class),'LR',1,'L');  //.$value->class
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
-    $pdf->Cell($hef,$th-2," Roll: $value->roll, Ses: $other_libraries->GetClassYearSession($value->year, $value->class)",'LR',1,'L');
+    $pdf->Cell($hef,$th-2," Roll: $value->roll, Ses: " . $other_libraries->GetClassYearSession($value->year, $value->class),'LR',1,'L');
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
     $pdf->Cell($hef,$th-1," Group  : $value->group_r",'LR',1,'L');

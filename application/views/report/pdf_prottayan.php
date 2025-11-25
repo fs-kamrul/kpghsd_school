@@ -2,8 +2,9 @@
 //$sql ="SELECT * From tbl_student ts, tbl_student_class tsc, tbl_class tc WHERE ts.student_id = tsc.student_id and tsc.class_id = tc.class_id and tc.class = '{$class}' and tc.section = '{$section}' and tc.grp = '$group'  and tc.session1 = {$session1} and ts.leaving_date = '0000-00-00' order by tsc.roll_no";
 
 
-$pdf = new FPDF();
-$pdf->FPDFA('L', 'mm', 'A4');
+//$pdf = new FPDF();
+$pdf = new FPDF('L', 'mm', 'A4');
+//$pdf->FPDFA('L', 'mm', 'A4');
 		$h=7; $th=100;$the=180;$t=28;$tk=82;
 foreach ($main_a as $key => $value) {
 $pdf->AddPage();

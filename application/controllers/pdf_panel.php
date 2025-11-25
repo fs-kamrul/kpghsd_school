@@ -188,9 +188,9 @@ class pdf_panel extends CI_Controller {
             $data['main_a'] = $this->p_model->select_stu($data);
             if ($option_set == 1) {
                 switch ($design) {
-                    case 1: $this->load->view('report/pdf_id_card_bac_1', $data); break;
-//                    case 2: $this->load->view('report/pdf_id_card_bac_2', $data); break;
-                    default: $this->load->view('report/pdf_id_card_bac_1', $data); break;
+//                    case 1: $this->load->view('report/pdf/pdf_id_card_stu_bac_1', $data); break;
+                    case 2: $this->load->view('report/pdf/pdf_id_card_stu_bac_2', $data); break;
+                    default: $this->load->view('report/pdf/pdf_id_card_stu_bac_1', $data); break;
                 }
             } else {
                 switch ($design) {

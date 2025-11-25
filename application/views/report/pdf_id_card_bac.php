@@ -9,7 +9,8 @@ $pdf = new FPDF('P', 'mm', 'A4');
 $pdf->AddPage();
 $h = 56;$th = 5;$em = 16;$def = 190;$hef = 52;
 $y = 3;$x = 144.5;$i = 0;$j = 0;$k=0;
-$sx=153;$sy=18;$sz=34;
+$sx=146;$sy=7;$sz=48;
+$lineHeight = 3.5;
 $pdf->SetFont('Arial', 'I', 11);
 
 //echo '<pre>';
@@ -25,28 +26,40 @@ foreach ($main_a as $key => $value) {
     $pdf->SetFillColor(32,118,196);
 //    $pdf->Image('pictures/students/Roll-04.jpg', $sx, $sy, $sz);
     $picture_file = $value->photo;
-//    if(empty($picture_file)){
-    if(!file_exists($picture_file)){
-			$pdf->Image('images/1.jpg',$sx, $sy, $sz);
-		}else{
-			$pdf->Image($picture_file,$sx, $sy, $sz);
-		}
-    $pdf->SetFont('Arial', 'B', 11);
+//    if(!file_exists($picture_file)){
+//        $pdf->Image('images/1.jpg',$sx, $sy, $sz);
+//    }else{
+//        $pdf->Image($picture_file,$sx, $sy, $sz);
+//    }
+    if(file_exists('images/pdf/pdf_header2.png')){
+        $pdf->Image('images/pdf/pdf_header2.png', $sx, $sy, $sz);
+    }
+    $pdf->SetFont('Arial', 'B', 7);
         $pdf->SetXY($x, $y);
     $pdf->Cell($hef, $th, ' ','LTR', 1, 'C');
+//        $pdf->SetX($x);
+//    $pdf->Cell($hef,$th," Mobile : $value->mobile_number",'LR',1,'L');
+
         $pdf->SetX($x);
-    $pdf->Cell($hef,$th," Mobile : $value->mobile_number",'LR',1,'L');
+    $pdf->Cell($hef,47.5,"",'LR',1,'C');
         $pdf->SetX($x);
-    $pdf->Cell($hef,45,"",'LR',1,'C');
+    $pdf->SetFont('Arial', 'B', 7);
+    $pdf->Cell($hef,$lineHeight,"Contact Us",'LR',1,'C');
+
         $pdf->SetX($x);
-    $pdf->SetFont('Arial', 'B', 11);
-    $pdf->Cell($hef,$th,"Phone:$academy_info->phone_number",'LR',1,'C');
+    $pdf->SetFont('Arial', '', 7);
+    $pdf->SetTextColor(85, 85, 85);
+    $pdf->Cell($hef, $lineHeight,  "EIIN: " . $academy_info->s_code,'LR', 1, 'C');
         $pdf->SetX($x);
-    $pdf->SetFont('Arial', 'B', 8);
-    $pdf->Cell($hef,$th,"E-mail:$academy_info->email",'LR',1,'C');
+    $pdf->SetFont('Arial', '', 7);
+    $pdf->Cell($hef,$lineHeight,"Phone: $academy_info->phone_number",'LR',1,'C');
+
         $pdf->SetX($x);
-    $pdf->SetFont('Arial', 'B', 11);
-    $pdf->Cell($hef,$th,"Website:$academy_info->site_url",'LR',1,'C');
+    $pdf->SetFont('Arial', 'B', 7);
+    $pdf->Cell($hef,$lineHeight,"Email: $academy_info->email",'LR',1,'C');
+        $pdf->SetX($x);
+    $pdf->SetFont('Arial', 'B', 7);
+    $pdf->Cell($hef,$lineHeight,"Website: $academy_info->site_url",'LR',1,'C');
         $pdf->SetX($x);
     $pdf->Cell($hef,$th,"",'LR',1,'C');
         $pdf->SetX($x);
@@ -63,7 +76,7 @@ foreach ($main_a as $key => $value) {
     }elseif($k==3){
         $k=0;
         $y=$y+92;$x = 144.5;
-        $sy+=92;$sx=153;
+        $sy+=92;$sx=146;
     }
 }
 $pdf->Output();

@@ -95,7 +95,7 @@ foreach ($main_a as $key => $value) {
     } elseif ($value->class == 'Ten' || $value->class == 'Twelve') {
         $session = ($value->year - 1) . '-' . $value->year;
     } else {
-        $session = $value->year + 11;
+        $session = $value->year + 1;
     }
 
     $pdf->SetX($x);

@@ -44,6 +44,16 @@ class other_libraries {
             return $year;
         }
     }
+    public function GetClassYearSession($year, $class) {
+        if ($class == 'NINE' || $class == 'NINE-VOC' || $class == 'Eleven') {
+            $session = $year . '-' . ($year + 1);
+        } elseif ($class == 'TEN' || $class == 'TEN-VOC' || $class == 'Twelve') {
+            $session = ($year - 1) . '-' . $year;
+        } else {
+            $session = $year + 1;
+        }
+        return $session;
+    }
 
     /* in_words */
     function get_bd_money_format($amount) {

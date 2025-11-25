@@ -2,6 +2,7 @@
 $pdf = new FPDF('P','mm','A4');
 //$pdf->FPDFA('P', 'mm', 'A4');
 //$pdf->Open();
+$other_libraries = new other_libraries();
 $pdf->AddPage();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -86,7 +87,7 @@ foreach ($main_a as $key => $value) {
     $pdf->Cell($hef,$th-1, ' Class: XI-XII','LR',1,'L');  //.$value->class
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
-    $pdf->Cell($hef,$th-2," Roll: $value->roll, Ses: 2017-18",'LR',1,'L');
+    $pdf->Cell($hef,$th-2," Roll: $value->roll, Ses: $other_libraries->GetClassYearSession($value->year, $value->class)",'LR',1,'L');
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 8);
     $pdf->Cell($hef,$th-1," Group  : $value->group_r",'LR',1,'L');

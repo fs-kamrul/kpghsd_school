@@ -9,7 +9,7 @@ $pdf = new FPDF('L', 'mm', 'A4');
 foreach ($main_a as $key => $value) {
 $pdf->AddPage();
 $pdf->Image('images/im_pdf/school_logo1.jpg',110,10,180);
-$pdf->Image('images/pdf/a.jpg',150,80,100);
+$pdf->Image('images/pdf/opacity.png',150,80,100);
 $pdf->Image('images/im_pdf/dot.png',170,77,110);
 $pdf->Image('images/im_pdf/dot.png',155,84,125);
 $pdf->Image('images/im_pdf/dot.png',154,91,126);

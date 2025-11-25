@@ -63,7 +63,7 @@ foreach ($main_a as $key => $value) {
     $pdf->Cell($hef,$th," ".$value->name,'LR',1,'L');
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 9);
-    $pdf->Cell($hef,$th," Class: ". $other_libraries->getClassRoman($value->class).", Roll: $value->roll, Ses: " . $other_libraries->GetClassSession($value->year, $value->class) ,'LR',1,'L');
+    $pdf->Cell($hef,$th," Class: ". $other_libraries->GetClassData($value->class).", Roll: $value->roll, Ses: " . $other_libraries->GetClassSession($value->year, $value->class) ,'LR',1,'L');
         $pdf->SetX($x);
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell($hef,$th," Group  : $value->group_r",'LR',1,'L');

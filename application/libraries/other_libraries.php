@@ -3,33 +3,33 @@
 class other_libraries {
 
     public function getClassRoman($class) {
-        if ($class == 'Play') {
+        if ($class == 'play') {
             return "P";
-        } else if ($class == 'Nursary') {
+        } else if ($class == 'nursary') {
             return "N";
-        } else if ($class == 'One') {
+        } else if ($class == 'one') {
             return "I";
-        } else if ($class == 'Two') {
+        } else if ($class == 'two') {
             return "II";
-        } else if ($class == 'Three') {
+        } else if ($class == 'three') {
             return "III";
-        } else if ($class == 'Four') {
+        } else if ($class == 'four') {
             return "IV";
-        } else if ($class == 'Five') {
+        } else if ($class == 'five') {
             return "V";
-        } else if ($class == 'Six') {
+        } else if ($class == 'six') {
             return "VI";
-        } else if ($class == 'Seven') {
+        } else if ($class == 'seven') {
             return "VII";
-        } else if ($class == 'Eight') {
+        } else if ($class == 'eight') {
             return "VIII";
-        } else if ($class == 'Nine') {
+        } else if ($class == 'nine') {
             return "IX";
-        } else if ($class == 'Ten') {
+        } else if ($class == 'ten') {
             return "X";
-        } else if ($class == 'Eleven') {
+        } else if ($class == 'eleven') {
             return "XI";
-        } else if ($class == 'Twelve') {
+        } else if ($class == 'twelve') {
             return "XII";
         } else {
             return "F";
@@ -57,31 +57,31 @@ class other_libraries {
     public function GetClassData($class) {
         switch (strtoupper($class)) {
             case 'NINE':
-                $start = $this->getClassRoman('Nine');
-                $end   = $this->getClassRoman('Ten');
+                $start = $this->getClassRoman('nine');
+                $end   = $this->getClassRoman('ten');
                 break;
             case 'NINE-VOC':
-                $start = $this->getClassRoman('Nine');
-                $end   = $this->getClassRoman('Ten');
+                $start = $this->getClassRoman('nine');
+                $end   = $this->getClassRoman('ten');
                 break;
             case 'TEN':
-                $start = $this->getClassRoman('Nine');
-                $end   = $this->getClassRoman('Ten');
+                $start = $this->getClassRoman('nine');
+                $end   = $this->getClassRoman('ten');
                 break;
             case 'TEN-VOC':
-                $start = $this->getClassRoman('Nine');
-                $end   = $this->getClassRoman('Ten');
+                $start = $this->getClassRoman('nine');
+                $end   = $this->getClassRoman('ten');
                 break;
             case 'ELEVEN':
-                $start = $this->getClassRoman('Eleven');
-                $end   = $this->getClassRoman('Twelve');
+                $start = $this->getClassRoman('eleven');
+                $end   = $this->getClassRoman('twelve');
                 break;
             case 'TWELVE':
-                $start = $this->getClassRoman('Eleven');
-                $end   = $this->getClassRoman('Twelve');
+                $start = $this->getClassRoman('eleven');
+                $end   = $this->getClassRoman('twelve');
                 break;
             default:
-                return $this->getClassRoman($class);
+                return $this->getClassRoman(strtolower($class));
         }
         return $start . ' - ' . $end;
     }

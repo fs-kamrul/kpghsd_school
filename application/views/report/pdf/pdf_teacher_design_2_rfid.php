@@ -26,7 +26,7 @@ foreach ($main_a as $key => $value) {
 
     // Government emblems positions
 //    $pdf->Image('images/govt_emblem_left.png', 3, 3, 8, 8); // Left emblem
-    $pdf->Image('images/logod.png', 3, 3, 10, 10); // Left emblem
+    $pdf->Image('images/pdf/logo.png', 3, 3, 10, 10); // Left emblem
 //    $pdf->Image('images/bd_flag.png', 43, 3, 8, 8); // Right BD flag
 
     // Header text

@@ -112,7 +112,7 @@ foreach ($main_a as $key => $value) {
     $pdf->SetFont('Arial', 'B', 10.5);
     $pdf->Cell($hef, $th+1, $academy_info->site_url,'TLBR',1,'C',1);
 
-    $pdf->Image('images/logod.png', $px, $py, $pz);
+    $pdf->Image('images/pdf/logo.png', $px, $py, $pz);
 
     if ($k==1) {
         $x = $x+65.5;

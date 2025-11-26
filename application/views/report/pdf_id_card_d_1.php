@@ -29,7 +29,7 @@ foreach ($main_a as $key => $value) {
     $pdf->SetFillColor(32,118,196);
 
     $pdf->Image('images/bg.jpg', $bgx, $bgy, $bgz,86);
-    $pdf->Image('images/logod.png', $px, $py, $pz);
+    $pdf->Image('images/pdf/logo.png', $px, $py, $pz);
 //    $pdf->Image('images/principal.png', $lx, $ly, $lz);
     $picture_file = $value->photo;
 
